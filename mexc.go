@@ -2,10 +2,9 @@ package mexc
 
 import (
 	"context"
-	mexchttp "github.com/bogdankorobka/mexc-golang-sdk/http"
-	mexchttpmarket "github.com/bogdankorobka/mexc-golang-sdk/http/market"
-	mexcws "github.com/bogdankorobka/mexc-golang-sdk/websocket"
-	mexcwsmarket "github.com/bogdankorobka/mexc-golang-sdk/websocket/market"
+
+	mexchttp "github.com/liuhengloveyou/mexc-go/http"
+	mexchttpmarket "github.com/liuhengloveyou/mexc-go/http/market"
 )
 
 type Rest struct {
@@ -21,16 +20,4 @@ func NewRest(ctx context.Context, mexcHttp *mexchttp.Client) (*Rest, error) {
 	return &Rest{
 		MarketService: marketService,
 	}, nil
-}
-
-type Ws struct {
-	*mexcws.MEXCWebSocket
-	MarketService *mexcwsmarket.Service
-}
-
-func NewWs(mexcWs *mexcws.MEXCWebSocket) *Ws {
-	return &Ws{
-		MEXCWebSocket: mexcWs,
-		MarketService: mexcwsmarket.New(mexcWs),
-	}
 }
